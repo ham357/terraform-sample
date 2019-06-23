@@ -15,9 +15,16 @@
         "ecr:InitiateLayerUpload",
         "ecr:UploadLayerPart",
         "ecr:CompleteLayerUpload",
-        "ecr:PutImage"
+        "ecr:PutImage",
+        "ecs:DescribeServices",
+        "ecs:DescribeTaskDefinition",
+        "ecs:RegisterTaskDefinition",
+        "ecs:UpdateService",
+        "ecs:RunTask",
+        "ecs:DescribeTasks",
+        "ecs:ListTasks"
       ],
       "Resource": "*"
     }
-  ] 
+  ]
 }
