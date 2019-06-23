@@ -2,7 +2,7 @@
   {
     "name": "sample-rails",
     "image": "497279729322.dkr.ecr.ap-northeast-1.amazonaws.com/sample-image",
-    "cpu": 333,
+    "cpu": 200,
     "memory": null,
     "memoryReservation": 600,
     "essential": true,
@@ -13,7 +13,7 @@
         "containerPort": 3000
       }
     ],
-    "command": ["bundle", "exec", "pumactl", "start"],
+    "command": ["bundle", "exec", "rails", "db:create", "db:migrate"],
     "environment": [
       {
         "name": "RAILS_ENV",
@@ -29,7 +29,7 @@
       "options": {
         "awslogs-group": "sample-service",
         "awslogs-region": "ap-northeast-1",
-        "awslogs-stream-prefix": "service"
+        "awslogs-stream-prefix": "migration"
       }
     }
   }

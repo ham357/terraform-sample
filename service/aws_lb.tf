@@ -6,7 +6,7 @@ resource "aws_lb" "lb" {
   security_groups = [
     "${aws_security_group.alb.id}",
   ]
-  
+
   subnets = [
     "${data.terraform_remote_state.vpc.outputs.public_subnet_1_id}",
     "${data.terraform_remote_state.vpc.outputs.public_subnet_2_id}",

@@ -4,7 +4,7 @@ resource "aws_lb_target_group" "http" {
   protocol = "HTTP"
   vpc_id   = "${data.terraform_remote_state.vpc.outputs.vpc_id}"
 
- health_check {
+  health_check {
     interval            = 30
     path                = "/health_check"
     port                = "traffic-port"
@@ -12,5 +12,5 @@ resource "aws_lb_target_group" "http" {
     timeout             = 10
     healthy_threshold   = 3
     unhealthy_threshold = 3
-  } 
+  }
 }
