@@ -1,7 +1,7 @@
 resource "aws_security_group" "instance" {
   name        = "instance"
   description = "instance sg for http and ssh"
-  vpc_id      = "${data.terraform_remote_state.vpc.outputs.vpc_id}"
+  vpc_id      = data.terraform_remote_state.vpc.outputs.vpc_id
 
   ingress {
     from_port = 0
@@ -9,7 +9,7 @@ resource "aws_security_group" "instance" {
     protocol  = "-1"
 
     security_groups = [
-      "${aws_security_group.alb.id}",
+      aws_security_group.alb.id,
     ]
   }
 
@@ -24,7 +24,7 @@ resource "aws_security_group" "instance" {
 resource "aws_security_group" "alb" {
   name        = "sample-rails-alb"
   description = "http and https"
-  vpc_id      = "${data.terraform_remote_state.vpc.outputs.vpc_id}"
+  vpc_id      = data.terraform_remote_state.vpc.outputs.vpc_id
 
   ingress {
     from_port = 80
@@ -47,7 +47,7 @@ resource "aws_security_group" "alb" {
 resource "aws_security_group" "db" {
   name        = "sample-db"
   description = "DB"
-  vpc_id      = "${data.terraform_remote_state.vpc.outputs.vpc_id}"
+  vpc_id      = data.terraform_remote_state.vpc.outputs.vpc_id
 
   ingress {
     from_port = 3306
@@ -55,7 +55,8 @@ resource "aws_security_group" "db" {
     protocol  = "tcp"
 
     security_groups = [
-      "${aws_security_group.instance.id}",
+      aws_security_group.instance.id,
     ]
   }
 }
+
